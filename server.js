@@ -30,40 +30,11 @@ cloudinary.config({
   });
 
 app.get("/",async(req,res)=>{
-    // const image= await Popular.findOne({ 'Image.name': 'handsome' })
-    // const base64Image = image.Image.data.toString('base64');
-    // const contentType = image.Image.contentType;
-    // const imageUrl = `data:${contentType};base64,${base64Image}`;
+    
 
-    // const htmlResponse = `<img src="${imageUrl}" alt="Handsome Image"/>`;
-
-    // res.send(htmlResponse);
+   res.send("<h1>Hello World</h1>)
     
 })
-
-const imagePath = path.join(__dirname, '/images', 'handsome.jpg');
-
-/////////////////////////////////////
-const uploadAsset = async (file , name) => {
-
-    try {
-        // Get details about the asset
-        const result = await cloudinary.uploader.upload(file);
-        const newArea=new Area({
-            name:name,
-            Image:{
-                name:result.original_filename,
-                url:result.url
-            }
-        })
-        await newArea.save();
-        console.log(result);
-        return result.colors;
-        } catch (error) {
-        console.error(error);
-    }
-};
-// uploadAsset(imagePath,"hansome")
 
 
 app.listen(4000,()=>{
@@ -71,48 +42,3 @@ app.listen(4000,()=>{
 })
 
 
-/////////////////////////////////////
-// Gets details of an uploaded image
-/////////////////////////////////////
-const getAssetInfo = async (publicId) => {
-
-    // Return colors in the response
-    const options = {
-      colors: true,
-    };
-
-    try {
-        // Get details about the asset
-        const result = await cloudinary.api.resource(publicId, options);
-        console.log(result);
-        return result.colors;
-        } catch (error) {
-        console.error(error);
-    }
-};
-
-
-// function createImage(imagePath) {
-//     try {
-//         const imageData = fs.readFileSync(imagePath);
-//         const imageBuffer=Buffer.from(imageData)
-//         console.log(imageBuffer)
-
-        
-
-//         const newImage = new Area({
-//             name:"Siddiq",
-//             Image: {
-//                 name:"handsome",
-//                 data: imageBuffer,
-//                 contentType: "content/jpg"
-//             }
-//         });
-//         newImage.save();
-//     } catch (error) {
-//         console.error("Error reading image file:", error);
-//     }
-// }
-
-
-// createImage(imagePath)
