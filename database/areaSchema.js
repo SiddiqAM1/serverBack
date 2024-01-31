@@ -7,7 +7,11 @@ const imageSchema = new mongoose.Schema({
 const areaSchema= new mongoose.Schema(
     {
         name:String,
-        Image:imageSchema
+        Image:imageSchema,
+        brochureLink:String,
+        videoLink:String,
+        description:String
+
     }
 )
 

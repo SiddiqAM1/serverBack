@@ -1,6 +1,6 @@
 const express= require("express")
 const { default: mongoose, deleteModel } = require("mongoose")
-const Area=require('./database/areaSchema')
+
 const fs =require("fs")
 const path = require("path")
 const areaRouter=require("./apis/area/area")
@@ -9,9 +9,13 @@ const cloudinary = require("cloudinary").v2;
 const mailRoute = require("./apis/area/mail/mailRoute")
 
 const sendMail = require("./apis/area/middleware/mail")
+const Area = require("./database/areaSchema")
 
 mongoose.connect("mongodb+srv://sadiq:benu1786@cluster0.6g2zjey.mongodb.net/cms?retryWrites=true&w=majority").then(()=>{
     console.log("connected")
+})
+.catch(err=>{
+    console.log(err)
 })
 
 
@@ -29,10 +33,11 @@ cloudinary.config({
     secure: true
   });
 
+
 app.get("/",async(req,res)=>{
     
 
-   res.send("<h1>Hello World</h1>)
+   res.send("<h1>Hello World</h1>")
     
 })
 
